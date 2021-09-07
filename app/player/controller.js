@@ -23,6 +23,7 @@ module.exports = {
   detailPage: async (req, res) => {
     try {
       const { id } = req.params
+      const payment = await Payment.find()
       const voucher = await Voucher.findById(id)
         .populate("category")
         .populate("nominals")
@@ -30,7 +31,10 @@ module.exports = {
 
       if (!voucher) return res.status(404).send("Voucher Game tidak ditemukan.!")
 
-      res.status(200).send(voucher)
+      res.status(200).send({
+        ...voucher._doc,
+        payment,
+      })
     } catch (err) {
       res.status(500).send(err.message)
     }
