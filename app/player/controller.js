@@ -24,6 +24,7 @@ module.exports = {
     try {
       const { id } = req.params
       const payment = await Payment.find()
+        .populate("banks")
       const voucher = await Voucher.findById(id)
         .populate("category")
         .populate("nominals")
