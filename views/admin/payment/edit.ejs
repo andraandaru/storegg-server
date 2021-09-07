@@ -1,0 +1,58 @@
+<%- include ../../partials/header.ejs %> <%- include ../../partials/navbar.ejs %> <%- include
+../../partials/sidebar.ejs %>
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Jenis Pembayaran</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/payment">Jenis Pembayaran</a></li>
+            <li class="breadcrumb-item active">Ubah</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12"><%- include edit_form.ejs %></div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+
+<%- include ../../partials/footer.ejs %> <%- include ../../partials/js.ejs %>
+
+<script>
+  function readURL (input) {
+    if(input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = function(e){
+        $('#preview').attr('src', e.target.result)
+        $('#preview').attr('width', '20%')
+        $('#preview').attr('height', '20%')
+      }
+
+      reader.readAsDataURL(input.files[0])
+    }
+  }
+
+  $('#image').change(function(){
+    readURL(this)
+  })
+</script>

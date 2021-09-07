@@ -1,0 +1,63 @@
+<div class="card card-primary">
+  <div class="card-header">
+    <h3 class="card-title">Form Tambah Voucher</h3>
+  </div>
+  <!-- /.card-header -->
+  <!-- form start -->
+  <form action="/voucher/create" method="POST" enctype="multipart/form-data">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="name">Masukkan nama game</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="Masukkan nama game"
+        />
+      </div>
+      <div class="form-group">
+        <label>Kategori</label>
+        <select class="form-control select2" style="width: 100%" name="category" required>
+          <option selected="selected">Pilih Kategori</option>
+          <% category.forEach(category=> { %>
+          <option value="<%= category._id %>"><%= category.name %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Nominal</label>
+        <div class="select2-purple">
+          <select
+            class="form-control select2"
+            data-dropdown-css-class="select2-purple"
+            multiple="multiple"
+            style="width: 100%"
+            name="nominals"
+            required
+            data-placeholder="Pilih nominal"
+          >
+            <% nominals.forEach(nominals=> { %>
+            <option value="<%= nominals._id %>"><%= nominals.coinName %> <%= nominals.price %></option>
+            <% }) %>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="image">Gambar</label>
+        <input
+          type="file"
+          class="form-control"
+          id="image"
+          name="image"
+          placeholder="Masukkan gambar"
+        />
+        <br />
+        <img src="" id="preview" />
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Simpan</button>
+    </div>
+  </form>
+</div>
