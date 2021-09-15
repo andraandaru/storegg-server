@@ -23,8 +23,7 @@ module.exports = {
   detailPage: async (req, res) => {
     try {
       const { id } = req.params
-      const payment = await Payment.find()
-        .populate("banks")
+      const payment = await Payment.find().populate("banks")
       const voucher = await Voucher.findById(id)
         .populate("category")
         .populate("nominals")
@@ -72,7 +71,7 @@ module.exports = {
       if (!res_bank) return res.status(404).send("bank tidak ditemukan.")
 
       const tax = (10 / 100) * res_nominal._doc.price
-      const value = res_nominal._doc.price - tax
+      const value = res_nominal._doc.price + tax
 
       const payload = {
         historyVoucherTopup: {
